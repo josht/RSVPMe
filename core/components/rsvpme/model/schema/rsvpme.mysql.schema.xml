@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="rsvpme" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="rsvpme">
+    <object class="RSVPMeEvent" table="rsvpme_events" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+        <field key="description" dbtype="text" phptype="text" null="false" default="" />
+        <field key="date" dbtype="datetime" phptype="datetime" null="false" />
+        <field key="link" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
+
+        <composite alias="RegistrationType" class="RSVPMeRegType" local="id" foreign="event" cardinality="many" owner="local" />
+        <composite alias="Registered" class="RSVPMeRegistered" local="id" foreign="event" cardinality="many" owner="local" />
+    </object>
+    <object class="RSVPMeRegType" table="rsvpme_registration_types" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+        <field key="description" dbtype="text" phptype="text" null="false" default="" />
+        <field key="start" dbtype="datetime" phptype="datetime" null="false" />
+        <field key="end" dbtype="datetime" phptype="datetime" null="false" />
+        <field key="code" dbtype="varchar" precision="50" phptype="string" null="false" default="" />
+        <field key="fee" dbtype="decimal" precision="6,2" phptype="float" null="false" default="0.00" />
+        <field key="event" dbtype="integer" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" index="index" />
+
+        <aggregate alias="Event" class="RSVPMeEvent" local="event" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+    <object class="RSVPMeRegistered" table="rsvpme_registered" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
+        <field key="email" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
+        <field key="date" dbtype="datetime" phptype="datetime" null="false" />
+        <field key="event" dbtype="integer" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" index="index" />
+        <field key="paid" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0" />
+        <field key="cancel" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0" />
+
+        <aggregate alias="Event" class="RSVPMeEvent" local="event" foreign="id" cardinality="one" owner="foreign" />
+    </object> 
+</model>
