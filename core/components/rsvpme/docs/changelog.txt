@@ -2,5 +2,6 @@ Changelog for RSVPMe.
 
 RSVPMe 1.0.0dev
 ==============
+- Events can now be double clicked to manage
 - Manager interface/usability fixes.
 - Initial manager interface complete.

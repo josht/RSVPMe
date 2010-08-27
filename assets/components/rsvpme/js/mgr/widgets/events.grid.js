@@ -10,6 +10,9 @@ RSVPMe.grid.Events = function(config) {
         ,paging: true
         ,autosave: true
         ,remoteSort: true
+        ,listeners: {
+            'rowdblclick': {fn: this.manageEvent, scope: this}
+        }
         ,columns: [{
             header: _('name')
             ,sortable: true
@@ -38,7 +41,15 @@ Ext.extend(RSVPMe.grid.Events,MODx.grid.Grid,{
     windows: {}
 
     ,manageEvent: function() {
-        location.href = '?a='+MODx.request.a+'&action=event&eventid='+this.menu.record.id;
+        var redir = '?a='+MODx.request.a+'&action=event&eventid=';
+
+        // needed for double click
+        if (typeof(this.menu.record) == "undefined") {
+            redir += this.getSelectedAsList();
+        } else {
+            redir += this.menu.record.id;
+        }
+        location.href = redir;
     }
     ,getMenu: function() {
         var m = [];
