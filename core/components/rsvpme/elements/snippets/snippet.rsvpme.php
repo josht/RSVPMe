@@ -1,6 +1,8 @@
 <?php
 /**
- * The base RSVPMe snippet.
+ * RSVPMe
+ *
+ * Allow users to RSVP for events.
  *
  * @package rsvpme
  */

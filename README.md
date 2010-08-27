@@ -8,8 +8,8 @@ register.
 
 These are things that are planned to happen at some point. There is no 'offical'
 schedule at the moment.
-* Multiple Registration Types - Each event can have multiple. Each can have it's
-  own start/end date, fee, and code.
+
+* Multiple Registration Types - Each event can have multiple. Each can have it's own start/end date, fee, and code.
 * Public/Private events.
 
 ## Installation

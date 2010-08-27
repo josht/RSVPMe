@@ -4,11 +4,9 @@ RSVPMe.grid.Events = function(config) {
     Ext.applyIf(config,{
         id: 'rsvpme-grid-events'
         ,url: RSVPMe.config.connector_url
-        ,save_action: 'mgr/event/updateFromGrid'
         ,baseParams: { action: 'mgr/event/getlist' }
-        ,fields: ['id','name','description','date','code']
-        ,autoHeight: true
-        ,anchor: '97%'
+        ,fields: ['id','name','description','date','fee','code']
+        ,primaryKey: 'id'
         ,paging: true
         ,autosave: true
         ,remoteSort: true
@@ -17,7 +15,6 @@ RSVPMe.grid.Events = function(config) {
             ,sortable: true
             ,dataIndex: 'name'
             ,width: 50
-            ,editor: { xtype: 'textfield' }
         }, {
             header: _('description')
             ,sortable: false
@@ -28,7 +25,6 @@ RSVPMe.grid.Events = function(config) {
             ,sortable: true
             ,dataIndex: 'date'
             ,width: 100
-            ,editor: { xtype: 'xdatetime' }
         }]
         ,tbar: [{
             text: _('rsvpme.event_create')
@@ -41,11 +37,14 @@ RSVPMe.grid.Events = function(config) {
 Ext.extend(RSVPMe.grid.Events,MODx.grid.Grid,{
     windows: {}
 
+    ,manageEvent: function() {
+        location.href = '?a='+MODx.request.a+'&action=event&eventid='+this.menu.record.id;
+    }
     ,getMenu: function() {
         var m = [];
         m.push({
-            text: _('rsvpme.event_update')
-            ,handler: this.updateEvent
+            text: _('rsvpme.event_manage')
+            ,handler: this.manageEvent
         });
         m.push('-');
         m.push({
@@ -53,19 +52,6 @@ Ext.extend(RSVPMe.grid.Events,MODx.grid.Grid,{
             ,handler: this.removeEvent
         });
         this.addContextMenuItem(m);
-    }
-
-    ,createEvent: function(btn,e) {
-        if (!this.windows.createEvent) {
-            this.windows.createEvent = MODx.load({
-                xtype: 'rsvpme-window-event-create'
-                ,listeners: {
-                    'success': {fn:function() { this.refresh(); },scope:this}
-                }
-            });
-        }
-        this.windows.createEvent.fp.getForm().reset();
-        this.windows.createEvent.show(e.target);
     }
     ,updateEvent: function(btn,e) {
         if (!this.menu.record || !this.menu.record.id) return false;
@@ -135,6 +121,12 @@ RSVPMe.window.CreateEvent = function(config) {
             ,width: 300
         },{
             xtype: 'textfield'
+            ,fieldLabel: _('rsvpme.regtype_fee')
+            ,name: 'code'
+            ,id: 'rsvpme-'+this.ident+'-fee'
+            ,width:300
+        },{
+            xtype: 'textfield'
             ,fieldLabel: _('rsvpme.regtype_code')
             ,name: 'code'
             ,id: 'rsvpme-'+this.ident+'-code'
@@ -178,6 +170,12 @@ RSVPMe.window.UpdateEvent = function(config) {
             ,name: 'date'
             ,id: 'rsvpme-'+this.ident+'-date'
             ,width: 300
+        }, {
+            xtype: 'textfield'
+            ,fieldLabel: _('rsvpme.regtype_fee')
+            ,name: 'fee'
+            ,id: 'rsvpme-'+this.ident+'=fee'
+            ,width:300
         },{
             xtype: 'textfield'
             ,fieldLabel: _('rsvpme.regtype_code')

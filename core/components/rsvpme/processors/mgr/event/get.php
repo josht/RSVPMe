@@ -31,5 +31,12 @@ $event = $modx->getObject('RSVPMeEvent',$scriptProperties['id']);
 if (!$event) return $modx->error->failure($modx->lexicon('rsvpme.event_err_nf'));
 
 /* output */
-$eventArray = $event>toArray('', true);
+$eventArray = $event->toArray('', true);
+
+/* this is only here until registration types are editable on their own */
+$regtype = $event->getMany('RegistrationType');
+$regtype = array_pop($regtype);
+$regtypeArray = $regtype->toArray();
+$eventArray = array_merge($regtypeArray,$eventArray);
+
 return $modx->error->success('',$eventArray);

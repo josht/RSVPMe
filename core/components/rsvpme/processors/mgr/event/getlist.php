@@ -37,7 +37,7 @@ $count = $modx->getCount('RSVPMeEvent',$c);
 /* also retrive the code from the only available Registration Type */
 /* **** REMOVE THIS ONCE Registration Types are fully implemented **** */
 $c->innerJoin('RSVPMeRegType','RegistrationType', 'RegistrationType.event = RSVPMeEvent.id');
-$c->select('RSVPMeEvent.*, RegistrationType.code');
+$c->select('RSVPMeEvent.*, RegistrationType.code, RegistrationType.fee');
 
 
 $c->sortby($sort,$dir);

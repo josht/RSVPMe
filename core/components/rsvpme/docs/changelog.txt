@@ -2,4 +2,5 @@ Changelog for RSVPMe.
 
 RSVPMe 1.0.0dev
 ==============
-- Intial manager interface complete.
+- Manager interface/usability fixes.
+- Initial manager interface complete.

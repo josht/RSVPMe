@@ -16,7 +16,7 @@ class RSVPMeEvent extends xPDOSimpleObject {
                 'name' => 'default',
                 'description' => 'default registration type',
                 'code' => (isset($this->code)) ? $this->code : '',
-                'fee' => 0.00,
+                'fee' => (isset($this->fee)) ? $this->fee : '',
             ));
 
             $this->addMany($regtype);
@@ -37,10 +37,16 @@ class RSVPMeEvent extends xPDOSimpleObject {
          * Since Registration Types will only be editable in a later version,
          * we need to make sure the 'secret code' stays synced
          */
-        if (!$this->isNew() && isset($this->code)) {
+        if (!$this->isNew() && (isset($this->code) || isset($this->fee))) {
             $regtypes = $this->getMany('RegistrationType');
             $regtype = array_pop($regtypes);
-            $regtype->set('code',$this->code);
+
+            if (isset($this->code)) {
+                $regtype->set('code',$this->code);
+            }
+            if (isset($this->fee)) {
+                $regtype->set('fee',$this->fee);
+            }
         }
 
         /* now we can finish saving, this will also save related objects */

@@ -32,6 +32,7 @@ Ext.onReady(function() {
     RSVPMe.config = '.$modx->toJSON($RSVPMe->config).';
     RSVPMe.config.connector_url = "'.$RSVPMe->config['connectorUrl'].'";
     RSVPMe.action = "'.(!empty($_REQUEST['a']) ? $_REQUEST['a'] : 0).'";
+    RSVPMe.request = '.$modx->toJSON($_GET).';
 });
 </script>');
 
