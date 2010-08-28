@@ -82,6 +82,19 @@ Ext.extend(RSVPMe.grid.Events,MODx.grid.Grid,{
         this.windows.updateEvent.show(e.target);
     }
 
+    ,createEvent: function(btn,e) {
+        if (!this.windows.createEvent) {
+            this.windows.createEvent = MODx.load({
+                xtype: 'rsvpme-window-event-create'
+                ,listeners: {
+                    'success': {fn:function() { this.refresh(); },scope:this}
+                }
+            });
+        }
+        this.windows.createEvent.fp.getForm().reset();
+        this.windows.createEvent.show(e.target);
+    }
+
     ,removeEvent: function(btn,e) {
         if (!this.menu.record) return false;
 
