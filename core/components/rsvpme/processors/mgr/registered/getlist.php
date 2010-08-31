@@ -44,6 +44,6 @@ $registered = $modx->getCollection('RSVPMeRegistered',$c);
 $list = array();
 foreach ($registered as $reg) {
     $regArray = $reg->toArray();
-    $list[] = $eventArray;
+    $list[] = $regArray;
 }
 return $this->outputArray($list,$count);
