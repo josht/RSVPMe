@@ -158,6 +158,7 @@ if (!empty($_POST)) {
         $guest = array(
             'name' => $payer['FIRSTNAME'] . ' ' . $payer['LASTNAME'],
             'email' => $payer['EMAIL'],
+            'paid' => true,
         );
 
         if ($rsvpme->registerPerson($regtype->id, $guest)) {

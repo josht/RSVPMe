@@ -43,6 +43,8 @@ $_lang['rsvpme.event_remove'] = 'Remove Event';
 $_lang['rsvpme.event_remove_confirm'] = 'Are you sure you want to remove this Event?';
 $_lang['rsvpme.event_update'] = 'Update Event';
 $_lang['rsvpme.event_manage'] = 'Manage Event';
+$_lang['rsvpme.event_code_nf'] = 'Unable to find an event matching that code.';
+$_lang['rsvpme.event_code_expired'] = 'Sorry, that registration code has expired.';
 
 $_lang['rsvpme.registered_paid'] = 'Paid';
 $_lang['rsvpme.registered_cancel_confirm'] = 'Are you sure you want to cancel this registration?';
@@ -72,3 +74,8 @@ $_lang['rsvpme.item_remove'] = 'Remove Item';
 $_lang['rsvpme.item_remove_confirm'] = 'Are you sure you want to remove this Item?';
 $_lang['rsvpme.item_update'] = 'Update Item';
 $_lang['rsvpme.intro_msg'] = 'Manage your events.';
+
+$_lang['rsvpme.field_required'] = 'Field required.';
+$_lang['rsvpme.field_not_empty'] = 'Field cannot be empty.';
+$_lang['rsvpme.email_invalid'] = 'Email not valid.';
+$_lang['rsvpme.email_invalid_domain'] = 'Invalid email domain.';
