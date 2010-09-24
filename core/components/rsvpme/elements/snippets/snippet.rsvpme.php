@@ -30,7 +30,6 @@ $regWithoutFee = $modx->getOption('regWithoutFee',$scriptProperties,0);
 $tpls = array();
 
 
-$modx->setLogLevel(modX::LOG_LEVEL_INFO);
 /* if something was posted, we should process it */
 if (!empty($_POST)) {
     $rsvpme->loadValidator();
