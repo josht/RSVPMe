@@ -25,6 +25,22 @@
  * @package rsvpme
  */
 class RSVPMe {
+    /**
+     * @var int $debugTimer In debug mode, will monitor execution time.
+     * @access public
+     */
+    public $debugTimer = 0;
+    /**
+     * @var boolean $_initialized True if the class has been initialized
+     */
+    private $_initialized = false;
+
+
+    /**
+     * Construct an instance of RSVPMe
+     * @param modX $modx
+     * @param array $config
+     */
     function __construct(modX &$modx,array $config = array()) {
         $this->modx =& $modx;
 
@@ -46,10 +62,17 @@ class RSVPMe {
             'chunkSuffix' => '.chunk.tpl',
             'snippetsPath' => $corePath.'elements/snippets/',
             'processorsPath' => $corePath.'processors/',
+
+            'debug' => $this->modx->getOption('rsvpme.debug',null,false),
+            'use_multibyte' => (boolean)$this->modx->getOption('use_multibyte',null,false),
+            'encoding' => $this->modx->getOption('modx_charset',null,'UTF-8'),
         ),$config);
 
         $this->modx->addPackage('rsvpme',$this->config['modelPath']);
         $this->modx->lexicon->load('rsvpme:default');
+        if ($this->modx->getOption('rsvpme.debug',$this->config,true)) {
+            $this->startDebugTimer();
+        }
     }
 
     /**
@@ -83,6 +106,52 @@ class RSVPMe {
                  */
             break;
         }
+    }
+
+    /**
+     * Loads the Validator class (from FormIt)
+     *
+     * @access public
+     * @param $config array An array of configuration parameters for the
+     * validator class
+     * @return fiValidator An instance of the fiValidator class.
+     */
+    public function loadValidator($config = array()) {
+        if (!$this->modx->loadClass('rsvpme.rsvpmeValidator',$this->config['modelPath'],true,true)) {
+            $this->modx->log(modX::LOG_LEVEL_ERROR,'[RSVPMe] Could not load Validator class.');
+            return false;
+        }
+        $this->validator = new rsvpmeValidator($this, $config);
+        return $this->validator;
+    }
+
+    /**
+     * Sends the user to the payment processor to pay the registration fee
+     *
+     * @access public
+     */
+    public function processPayment() {
+        return true;
+    }
+
+    /**
+     * Registers a customer for an event
+     *
+     * @access public
+     * @param int $regtype The id of the regtype for which the user is registering
+     * @param array $user An array containing 'name' & 'email' & 'paid' for the registration
+     * @return boolean True if the user was successfully registered
+     */
+    public function registerPerson($regtypeid, array $user) {
+        $regtype = $this->modx->getObject('RSVPMeRegType', array('id' => $regtypeid));
+        if (!$regtype) return false;
+        $event = $regtype->getOne('Event');
+        $this->modx->log(modX::LOG_LEVEL_INFO,'[RSVPMe] Retrieved Event: ' . print_r($event->toArray(),true));
+
+        $registered = $this->modx->newObject('RSVPMeRegistered');
+        $registered->fromArray($user);
+        $event->addMany($registered,'Registered');
+        return $event->save();
     }
 
     /**
@@ -122,7 +191,8 @@ class RSVPMe {
      */
     private function _getTplChunk($name,$suffix = '.chunk.tpl') {
         $chunk = false;
-        $f = $this->config['chunksPath'].strtolower($name).$suffix;
+        $lname = $this->config['use_multibyte'] ? mb_strtolower($name,$this->config['encoding']) : strtolower($name);
+        $f = $this->config['chunksPath'].$lname.$suffix;
         if (file_exists($f)) {
             $o = file_get_contents($f);
             $chunk = $this->modx->newObject('modChunk');
@@ -130,5 +200,56 @@ class RSVPMe {
             $chunk->setContent($o);
         }
         return $chunk;
+    }
+
+    /**
+     * Output the final output and wrap in the wrapper chunk. Optional, but
+     * recommended for debugging as it outputs the execution time to the output.
+     *
+     * Also, it is good to output your sippet code with wrappers for easier
+     * CSS isolation and styling.
+     *
+     * @access public
+     * @param string $output The output to process
+     * @return string The final wrapped output
+     */
+    public function output($output) {
+        if ($this->debugTimer !== false) {
+            $output .= "<br />\nExecution time: ".$this->endDebugTimer()."\n";
+        }
+        return $output;
+    }
+
+    /**
+     * Starts the debug timer.
+     *
+     * @access protected
+     * @return int The start time.
+     */
+    protected function startDebugTimer() {
+        $mtime = microtime();
+        $mtime = explode(' ',$mtime);
+        $mtime = $mtime[1] + $mtime[0];
+        $tstart = $mtime;
+        $this->debugTimer = $tstart;
+        return $this->debugTimer;
+    }
+
+    /**
+     * Ends the debug timer and returns the total number of seconds script took
+     * to run.
+     *
+     * @access protected
+     * @return int The end total time to execute the script.
+     */
+    protected function endDebugTimer() {
+        $mtime = microtime();
+        $mtime = explode(' ',$mtime);
+        $mtime = $mtime[1] + $mtime[0];
+        $tend = $mtime;
+        $totalTime = ($tend - $this->debugTimer);
+        $totalTime = sprintf("%2.4f s", $totalTime);
+        $this->debugTimer = false;
+        return $totalTime;
     }
 }

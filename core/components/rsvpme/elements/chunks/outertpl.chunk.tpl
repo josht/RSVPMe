@@ -1,0 +1,5 @@
+[[+rsvpme.error]]
+[[+rsvpme.code]][[+rsvpme.list]]
+[[+rsvpme.feeform]]
+[[+rsvpme.register]]
+[[+rsvpme.regsuccess]]
