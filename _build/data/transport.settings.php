@@ -37,5 +37,58 @@ $settings['gallery.']->fromArray(array(
     'area' => '',
 ),'',true,true);
 */
+$settings['rsvpme.paypal_cert_chain'] = $modx->newObject('modSystemSetting');
+$settings['rsvpme.paypal_cert_chain']->fromArray(array(
+    'key'       => 'rsvpme.paypal_cert_chain',
+    'value'     => '',
+    'xtype'     => 'textfield',
+    'namespace' => 'rsvpme',
+    'area'      => 'payment',
+),'',true,true);
+
+$settings['rsvpme.paypal_environment'] = $modx->newObject('modSystemSetting');
+$settings['rsvpme.paypal_environment']->fromArray(array(
+    'key'       => 'rsvpme.paypal_environment',
+    'value'     => 'sandbox',
+    'xtype'     => 'textfield',
+    'namespace' => 'rsvpme',
+    'area'      => 'payment',
+),'',true,true);
+
+$settings['rsvpme.paypal_password'] = $modx->newObject('modSystemSetting');
+$settings['rsvpme.paypal_password']->fromArray(array(
+    'key'       => 'rsvpme.paypal_password',
+    'value'     => '',
+    'xtype'     => 'textfield',
+    'namespace' => 'rsvpme',
+    'area'      => 'payment',
+),'',true,true);
+
+$settings['rsvpme.paypal_cert'] = $modx->newObject('modSystemSetting');
+$settings['rsvpme.paypal_cert']->fromArray(array(
+    'key'       => 'rsvpme.paypal_cert',
+    'value'     => '',
+    'xtype'     => 'textfield',
+    'namespace' => 'rsvpme',
+    'area'      => 'payment',
+),'',true,true);
+
+$settings['rsvpme.paypal_signature'] = $modx->newObject('modSystemSetting');
+$settings['rsvpme.paypal_signature']->fromArray(array(
+    'key'       => 'rsvpme.paypal_signature',
+    'value'     => '',
+    'xtype'     => 'textfield',
+    'namespace' => 'rsvpme',
+    'area'      => 'payment',
+),'',true,true);
+
+$settings['rsvpme.paypal_username'] = $modx->newObject('modSystemSetting');
+$settings['rsvpme.paypal_username']->fromArray(array(
+    'key'       => 'rsvpme.paypal_username',
+    'value'     => '',
+    'xtype'     => 'textfield',
+    'namespace' => 'rsvpme',
+    'area'      => 'payment',
+),'',true,true);
 
 return $settings;

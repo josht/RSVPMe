@@ -29,7 +29,7 @@ class RSVPMe {
      * @var int $debugTimer In debug mode, will monitor execution time.
      * @access public
      */
-    public $debugTimer = 0;
+    public $debugTimer = false;
     /**
      * @var boolean $_initialized True if the class has been initialized
      */
@@ -70,7 +70,7 @@ class RSVPMe {
 
         $this->modx->addPackage('rsvpme',$this->config['modelPath']);
         $this->modx->lexicon->load('rsvpme:default');
-        if ($this->modx->getOption('rsvpme.debug',$this->config,true)) {
+        if ($this->config['debug']) {
             $this->startDebugTimer();
         }
     }

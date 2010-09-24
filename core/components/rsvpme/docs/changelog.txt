@@ -1,7 +1,8 @@
 Changelog for RSVPMe.
 
-RSVPMe 1.0.0dev
+RSVPMe 1.0.1 dev
 ==============
+- Fixed debug timer always on
 - Events can now be double clicked to manage
 - Manager interface/usability fixes.
 - Initial manager interface complete.

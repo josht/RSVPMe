@@ -33,9 +33,11 @@ if ($object->xpdo) {
             $modx->addPackage('rsvpme',$modelPath);
 
             $manager = $modx->getManager();
-
-            $manager->createObjectContainer('RSVPMeItem');
-
+            $modx->setLogLevel(modX::LOG_LEVEL_ERROR);
+            $manager->createObjectContainer('RSVPMeEvent');
+            $manager->createObjectContainer('RSVPMeRegType');
+            $manager->createObjectContainer('RSVPMeRegistered');
+            $modx->setLogLevel(modX::LOG_LEVEL_INFO);
             break;
         case xPDOTransport::ACTION_UPGRADE:
             break;
