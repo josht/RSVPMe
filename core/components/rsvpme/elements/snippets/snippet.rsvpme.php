@@ -29,10 +29,11 @@ $regWithoutFee = $modx->getOption('regWithoutFee',$scriptProperties,0);
 
 $tpls = array();
 
+// Load validator here as it is always needed (for now)
+$rsvpme->loadValidator();
 
 /* if something was posted, we should process it */
 if (!empty($_POST)) {
-    $rsvpme->loadValidator();
     $fields = $_POST;
     $fields = $rsvpme->validator->validateFields($fields);
 

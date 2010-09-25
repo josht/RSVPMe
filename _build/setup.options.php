@@ -35,7 +35,7 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
     case xPDOTransport::ACTION_INSTALL:
     case xPDOTransport::ACTION_UPGRADE:
         $setting = $modx->getObject('modSystemSetting',array('key' => 'rsvpme.emailFrom'));
-        if ($setting != nul) { $values['emailFrom'] = $setting->get('value'); }
+        if ($setting != null) { $values['emailFrom'] = $setting->get('value'); }
         unset($setting);
 
         $setting = $modx->getObject('modSystemSetting',array('key' => 'rsvpme.emailCC'));
@@ -50,14 +50,14 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
 }
 
 $output = '<label for="rsvpme-emailFrom">Emails From:</label>
-<input type="text" name="emailFrom" id="rsvpme-emailFrom" width="300" value="'.$values['emailFrom'].'" />
+<input type="text" name="rsvpmeemailFrom" id="rsvpme-emailFrom" width="300" value="'.$values['emailFrom'].'" />
 <br /><br />
 
 <label for="rsvpme-emailCC">Email CC:</label>
-<input type="text" name="emailCC" id="rsvpme-emailCC" width="300" value="'.$values['emailCC'].'" />
+<input type="text" name="rsvpmeemailCC" id="rsvpme-emailCC" width="300" value="'.$values['emailCC'].'" />
 <br /><br />
 
 <label for="rsvpme-emailBCC">Email BCC:</label>
-<input type="text" name="emailBCC" id="rsvpme-emailBCC" width="300" value="'.$values['emailBCC'].'" />';
+<input type="text" name="rsvpmeemailBCC" id="rsvpme-emailBCC" width="300" value="'.$values['emailBCC'].'" />';
 
 return $output;

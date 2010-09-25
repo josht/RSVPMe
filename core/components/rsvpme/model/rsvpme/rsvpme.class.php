@@ -72,6 +72,7 @@ class RSVPMe {
         $this->modx->lexicon->load('rsvpme:default');
         if ($this->config['debug']) {
             $this->startDebugTimer();
+            $this->modx->setLogLevel(modX::LOG_LEVEL_INFO);
         }
     }
 
@@ -216,6 +217,7 @@ class RSVPMe {
     public function output($output) {
         if ($this->debugTimer !== false) {
             $output .= "<br />\nExecution time: ".$this->endDebugTimer()."\n";
+            $this->modx->setLogLevel(modX::LOG_LEVEL_ERROR);
         }
         return $output;
     }

@@ -37,6 +37,30 @@ $settings['gallery.']->fromArray(array(
     'area' => '',
 ),'',true,true);
 */
+$settings['rsvpme.emailFrom'] = $modx->newObject('modSystemSetting');
+$settings['rsvpme.emailFrom']->fromArray(array(
+    'key'       => 'rsvpme.emailFrom',
+    'value'     => '',
+    'xtype'     => 'textfield',
+    'namespace' => 'rsvpme',
+    'area'      => 'email',
+),'',true,true);
+$settings['rsvpme.emailCC'] = $modx->newObject('modSystemSetting');
+$settings['rsvpme.emailCC']->fromArray(array(
+    'key'       => 'rsvpme.emailCC',
+    'value'     => '',
+    'xtype'     => 'textfield',
+    'namespace' => 'rsvpme',
+    'area'      => 'email',
+),'',true,true);
+$settings['rsvpme.emailBCC'] = $modx->newObject('modSystemSetting');
+$settings['rsvpme.emailBCC']->fromArray(array(
+    'key'       => 'rsvpme.emailBCC',
+    'value'     => '',
+    'xtype'     => 'textfield',
+    'namespace' => 'rsvpme',
+    'area'      => 'email',
+),'',true,true);
 $settings['rsvpme.paypal_cert_chain'] = $modx->newObject('modSystemSetting');
 $settings['rsvpme.paypal_cert_chain']->fromArray(array(
     'key'       => 'rsvpme.paypal_cert_chain',

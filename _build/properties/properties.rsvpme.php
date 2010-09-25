@@ -31,7 +31,7 @@ $properties = array(
         'desc'      => 'prop_rsvpme.outtertpl_desc',
         'type'      => 'textfield',
         'options'   => '',
-        'value'     => '',
+        'value'     => 'outertpl',
         'lexicon'   => 'rsvpme:properties',
     ),
     array(
@@ -39,7 +39,7 @@ $properties = array(
         'desc'      => 'prop_rsvpme.codetpl_desc',
         'type'      => 'textfield',
         'options'   => '',
-        'value'     => '',
+        'value'     => 'codetpl',
         'lexicon'   => 'rsvpme:properties',
     ),
     array(
@@ -47,7 +47,7 @@ $properties = array(
         'desc'      => 'prop_rsvpme.listtple_desc',
         'type'      => 'textfield',
         'options'   => '',
-        'value'     => '',
+        'value'     => 'listtpl',
         'lexicon'   => 'rsvpme:properties',
     ),
     array(
@@ -55,7 +55,7 @@ $properties = array(
         'desc'      => 'prop_rsvpme.regtpl_desc',
         'type'      => 'textfield',
         'options'   => '',
-        'value'     => '',
+        'value'     => 'regtpl',
         'lexicon'   => 'rsvpme:properties',
     ),
     array(
@@ -63,7 +63,7 @@ $properties = array(
         'desc'      => 'prop_rsvpme.regformtpl_desc',
         'type'      => 'textfield',
         'options'   => '',
-        'value'     => '',
+        'value'     => 'regform',
         'lexicon'   => 'rsvpme:properties',
     ),
     array(
@@ -71,7 +71,7 @@ $properties = array(
         'desc'      => 'prop_rsvpme.regformtpl_desc',
         'type'      => 'textfield',
         'options'   => '',
-        'value'     => '',
+        'value'     => 'freeform',
         'lexicon'   => 'rsvpme:properties',
     ),
     array(
@@ -79,7 +79,7 @@ $properties = array(
         'desc'      => 'prop_rsvpme.regformtpl_desc',
         'type'      => 'textfield',
         'options'   => '',
-        'value'     => '',
+        'value'     => 'regsuccess',
         'lexicon'   => 'rsvpme:properties',
     ),
     array(
@@ -99,45 +99,21 @@ $properties = array(
         'lexicon'   => 'rsvpme:properties',
     ),
     array(
-        'name'      => 'emailTo',
-        'desc'      => 'prop_rsvpme.emailto_desc',
-        'type'      => 'textfield',
-        'options'   => '',
-        'value'     => '',
-        'lexicon'   => 'rsvpme:properties',
-    ),
-    array(
-        'name'      => 'emailFrom',
-        'desc'      => 'prop_rsvpme.emailfrom_desc',
-        'type'      => 'textfield',
-        'options'   => '',
-        'value'     => '',
-        'lexicon'   => 'rsvpme:properties',
-    ),
-    array(
-        'name'      => 'emailCC',
-        'desc'      => 'prop_rsvpme.emailcc_desc',
-        'type'      => 'textfield',
-        'options'   => '',
-        'value'     => '',
-        'lexicon'   => 'rsvpme:properties',
-    ),
-    array(
-        'name'      => 'emailBCC',
-        'desc'      => 'prop_rsvpme.emailbcc_desc',
-        'type'      => 'textfield',
-        'options'   => '',
-        'value'     => '',
-        'lexicon'   => 'rsvpme:properties',
-    ),
-    array(
         'name'      => 'regWithoutFee',
         'desc'      => 'prop_rsvpme.regwithoutfee_desc',
-        'type'      => 'textfield',
+        'type'      => 'combo-boolean',
         'options'   => '',
-        'value'     => '',
+        'value'     => '0',
         'lexicon'   => 'rsvpme:properties',
     ),
+    array(
+        'name'      => 'confirmEmailTpl',
+        'desc'      => 'prop_rsvpme.confirmemailtpl',
+        'type'      => 'textfield',
+        'options'   => '',
+        'value'     => 'confirmemailtpl',
+        'lexicon'   => 'rsvpme:properties',
+    )
 /*
     array(
         'name' => '',

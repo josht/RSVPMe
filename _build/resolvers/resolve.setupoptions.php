@@ -30,9 +30,9 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
     case xPDOTransport::ACTION_INSTALL:
     case xPDOTransport::ACTION_UPGRADE:
         $settings = array(
-            'emailFrom',
-            'emailCC',
-            'emailBCC',
+            'rsvpmeemailFrom',
+            'rsvpmeemailCC',
+            'rsvpmeemailBCC',
         );
         foreach ($settings as $key) {
             if (isset($options[$key])) {
