@@ -71,7 +71,7 @@ $properties = array(
         'desc'      => 'prop_rsvpme.regformtpl_desc',
         'type'      => 'textfield',
         'options'   => '',
-        'value'     => 'freeform',
+        'value'     => 'feeform',
         'lexicon'   => 'rsvpme:properties',
     ),
     array(
